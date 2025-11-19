@@ -1,5 +1,5 @@
 // Replace with your Google Apps Script Web App URL
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzteh_H5lRJY8uDEKjGsu4vedFYUmws_bNI7mmfuuMAT5om7jHmgcRBs6vsQKzsr7HC0Q/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxQVeMBaVOPXbiVhVXxOjeNzMvSGRqYGkprV-tM50EO2XluSdDuBuVYvijbArlv5vq0XA/exec';
 
 // DOM Elements
 const form = document.getElementById('dataForm');
