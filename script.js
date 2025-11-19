@@ -1,5 +1,5 @@
 // Replace with your Google Apps Script Web App URL
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxQVeMBaVOPXbiVhVXxOjeNzMvSGRqYGkprV-tM50EO2XluSdDuBuVYvijbArlv5vq0XA/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
 
 // DOM Elements
 const form = document.getElementById('dataForm');
@@ -17,7 +17,7 @@ async function fetchTotalEntries() {
         }
         
         const data = await response.json();
-        totalEntriesEl.textContent = data.totalSum || 0;
+        totalEntriesEl.textContent = data.totalEntries || 0;
     } catch (error) {
         console.error('Error fetching total entries:', error);
         totalEntriesEl.textContent = 'Error';
@@ -44,9 +44,9 @@ form.addEventListener('submit', async (e) => {
     const priority = document.getElementById('priority').value;
     const status = document.getElementById('status').value;
     
-    // Validate all fields are selected
+    // Validate all fields are filled
     if (!category || !priority || !status) {
-        showStatus('Please select all fields', 'error');
+        showStatus('กรุณากรอกข้อมูลให้ครบทุกช่อง', 'error');
         return;
     }
     
@@ -60,39 +60,43 @@ form.addEventListener('submit', async (e) => {
     
     // Disable button during submission
     saveBtn.disabled = true;
-    saveBtn.textContent = 'Saving...';
+    saveBtn.textContent = 'กำลังบันทึก...';
     
     try {
+        console.log('Sending data:', formData);
+        
+        // Use a simpler approach with fetch
         const response = await fetch(SCRIPT_URL, {
+            redirect: 'follow',
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'text/plain;charset=utf-8',
             },
             body: JSON.stringify(formData)
         });
         
-        if (!response.ok) {
-            throw new Error('Failed to save data');
-        }
-        
         const result = await response.json();
+        console.log('Response:', result);
         
         if (result.status === 'success') {
-            showStatus('Saved successfully!', 'success');
+            showStatus('บันทึกสำเร็จ!', 'success');
             form.reset();
             
-            // Refresh total entries
-            fetchTotalEntries();
+            // Refresh total entries after delay
+            setTimeout(() => {
+                fetchTotalEntries();
+            }, 1000);
         } else {
             throw new Error(result.message || 'Save failed');
         }
+        
     } catch (error) {
-        console.error('Error saving data:', error);
-        showStatus('Error saving data. Please try again.', 'error');
+        console.error('Error details:', error);
+        showStatus('เกิดข้อผิดพลาด: ' + error.message, 'error');
     } finally {
         // Re-enable button
         saveBtn.disabled = false;
-        saveBtn.textContent = 'Save';
+        saveBtn.textContent = 'บันทึก';
     }
 });
 
