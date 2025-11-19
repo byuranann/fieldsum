@@ -11,7 +11,7 @@
         <!-- Info Display -->
         <div class="info-panel">
             <div class="info-content">
-                <span class="info-label">จำนวนไร่:</span>
+                <span class="info-label">Total Entries:</span>
                 <span class="info-value" id="totalEntries">Loading...</span>
             </div>
         </div>
@@ -22,43 +22,37 @@
             
             <form id="dataForm">
                 <div class="form-group">
-                    <label for="category">จังหวัด</label>
+                    <label for="category">Category</label>
                     <select id="category" name="category" required>
-                        <option value="">-- เลือกจังหวัด --</option>
-                        <option value="ตาก">ตาก</option>
-                        <option value="สุพรรณบุรี">สุพรรณบุรี</option>
-                        <option value="ชัยภูมิ">ชัยภูมิ</option>
-                        <option value="สุโขทัย">สุโขทัย</option>
-                        <option value="กำแพงเพชร">กำแพงเพชร</option>
-                        <option value="นครราชสีมา">นครราชสีมา</option>
-                        <option value="แพร่">แพร่</option>
-                        <option value="ลำพูน">ลำพูน</option>
-                        <option value="ลำปาง">ลำปาง</option>
+                        <option value="">-- Select Category --</option>
+                        <option value="A">Category A</option>
+                        <option value="B">Category B</option>
+                        <option value="C">Category C</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="priority">เบอร์</label>
+                    <label for="priority">Priority</label>
                     <select id="priority" name="priority" required>
-                        <option value="">-- เลือกเบอร์ --</option>
-                        <option value="#51">#51</option>
-                        <option value="#71">#71</option>
-                        <option value="#55">#55</option>
-                        <option value="#57">#57</option>
-                        <option value="#60">#60</option>
-                        <option value="#61">#61</option>
-                        <option value="#63">#63</option>
-                        <option value="#SB04">#SB04</option>
+                        <option value="">-- Select Priority --</option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
                     </select>
                 </div>
 
-                <div class="input">
-                    <label for="status">พื้นที่</label>
-                    <input type="text" id="status" name="status" required placeholder="ใส่จำนวนไร่">
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select id="status" name="status" required>
+                        <option value="">-- Select Status --</option>
+                        <option value="Active">Active</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Completed">Completed</option>
+                    </select>
                 </div>
 
                 <button type="submit" class="save-btn" id="saveBtn">
-                    บันทึก
+                    Save
                 </button>
             </form>
 
