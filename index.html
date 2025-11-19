@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Entry Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Info Display -->
+        <div class="info-panel">
+            <div class="info-content">
+                <span class="info-label">จำนวนไร่:</span>
+                <span class="info-value" id="totalEntries">Loading...</span>
+            </div>
+        </div>
+
+        <!-- Main Form -->
+        <div class="form-container">
+            <h1>Data Entry Form</h1>
+            
+            <form id="dataForm">
+                <div class="form-group">
+                    <label for="category">จังหวัด</label>
+                    <select id="category" name="category" required>
+                        <option value="">-- เลือกจังหวัด --</option>
+                        <option value="ตาก">ตาก</option>
+                        <option value="สุพรรณบุรี">สุพรรณบุรี</option>
+                        <option value="ชัยภูมิ">ชัยภูมิ</option>
+                        <option value="สุโขทัย">สุโขทัย</option>
+                        <option value="กำแพงเพชร">กำแพงเพชร</option>
+                        <option value="นครราชสีมา">นครราชสีมา</option>
+                        <option value="แพร่">แพร่</option>
+                        <option value="ลำพูน">ลำพูน</option>
+                        <option value="ลำปาง">ลำปาง</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="priority">เบอร์</label>
+                    <select id="priority" name="priority" required>
+                        <option value="">-- เลือกเบอร์ --</option>
+                        <option value="#51">#51</option>
+                        <option value="#71">#71</option>
+                        <option value="#55">#55</option>
+                        <option value="#57">#57</option>
+                        <option value="#60">#60</option>
+                        <option value="#61">#61</option>
+                        <option value="#63">#63</option>
+                        <option value="#SB04">#SB04</option>
+                    </select>
+                </div>
+
+                <div class="input">
+                    <label for="priority">พื้นที่</label>
+                    <input type="text" id="priority" name="priority" required placeholder="ใส่จำนวนไร่">
+                </div>
+
+                <button type="submit" class="save-btn" id="saveBtn">
+                    บันทึก
+                </button>
+            </form>
+
+            <!-- Status Message -->
+            <div class="status-message" id="statusMessage"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
