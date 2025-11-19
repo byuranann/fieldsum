@@ -17,7 +17,7 @@ async function fetchTotalEntries() {
         }
         
         const data = await response.json();
-        totalEntriesEl.textContent = data.totalEntries || 0;
+        totalEntriesEl.textContent = data.totalSum || 0;
     } catch (error) {
         console.error('Error fetching total entries:', error);
         totalEntriesEl.textContent = 'Error';
