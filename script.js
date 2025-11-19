@@ -1,5 +1,5 @@
 // Replace with your Google Apps Script Web App URL
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6bbZUqQWOcOeWjxQwRp0r3JTh9_f3o7ur5UyBMVXMi_BfwEOFsNPVTSGzND5gotXDXw/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxv9wWG3NZny7Oyv_ddFJVcqG1MEdEt_FniDr45e4bsG_ZMjKcNuetWxzR6zZ8j4YGwVA/exec';
 
 // DOM Elements
 const form = document.getElementById('dataForm');
@@ -50,32 +50,25 @@ form.addEventListener('submit', async (e) => {
         return;
     }
     
-    // Prepare data
-    const formData = {
-        category: category,
-        priority: priority,
-        status: status,
-        timestamp: new Date().toISOString()
-    };
-    
     // Disable button during submission
     saveBtn.disabled = true;
     saveBtn.textContent = 'กำลังบันทึก...';
     
     try {
-        console.log('Sending data:', formData);
-        
-        // Use a simpler approach with fetch
-        const response = await fetch(SCRIPT_URL, {
-            redirect: 'follow',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'text/plain;charset=utf-8',
-            },
-            body: JSON.stringify(formData)
+        // Create form data as URL parameters for GET request
+        const params = new URLSearchParams({
+            mode: 'save',
+            category: category,
+            priority: priority,
+            status: status,
+            timestamp: new Date().toISOString()
         });
         
+        console.log('Sending data via GET:', params.toString());
+        
+        const response = await fetch(`${SCRIPT_URL}?${params.toString()}`);
         const result = await response.json();
+        
         console.log('Response:', result);
         
         if (result.status === 'success') {
@@ -87,7 +80,7 @@ form.addEventListener('submit', async (e) => {
                 fetchTotalEntries();
             }, 1000);
         } else {
-            throw new Error(result.message || 'Save failed');
+            throw new Error(result.message || 'บันทึกไม่สำเร็จ');
         }
         
     } catch (error) {
